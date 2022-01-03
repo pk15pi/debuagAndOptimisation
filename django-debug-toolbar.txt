@@ -1,0 +1,30 @@
+1: pip install django-debug-toolbar
+
+2: add list of ip to from where debug will be accessed
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
+
+3: add application
+    "debug_toolbar", 
+    
+4: add url
+    path('__debug__/', include('debug_toolbar.urls')),
+
+5: add middleware
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+
+7: configure if using docker
+    if DEBUG:
+    import os  # only if you haven't already imported this
+    import socket  # only if you haven't already imported this
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS = [ip[:-1] + '1' for ip in ips] + ['127.0.0.1', '10.0.2.2']
+
+8: makemigrations and migrate
+
+access the web
+

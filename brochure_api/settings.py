@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_auth.registration',
     'apis',
-    'django_rest_passwordreset'
+    'django_rest_passwordreset',
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # for django-debug-toolbar
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+]
+
+# for django-debug-toolbar, the place where the debug will be accessed
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 ROOT_URLCONF = 'brochure_api.urls'
